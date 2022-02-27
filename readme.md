@@ -7,7 +7,7 @@ This project is to explore creating a single API for multiple databases.  It is 
 # Project Contents
 
 This is the standard ApiLogicProject, with the following changes (I've tried to denote this with *megapilos*):
-* `config.py` is altered to include some binds
+* `config.py` is altered to include the `cls` bind
 * `database/models_cls.py` has been added (models for the `cls` bind)
 * `api/expose_api_models.py` to expose `models_cls.py`
 
@@ -30,6 +30,15 @@ This should enable you to run launch configuration `ApiLogicServer`.
 
 The API starts, and the swagger runs, exposing the `office` endpoint.
 
-But, `get' fails since the database is not opened:
+But, `get` fails since the ***database is not opened:***
+
+```
+safrs.errors.GenericError
+Generic Error: (sqlite3.OperationalError) no such table: offices
+[SQL: SELECT offices."officeCode" AS "offices_officeCode", offices.city AS offices_city, offices.phone AS offices_phone, offices."addressLine1" AS "offices_addressLine1", offices."addressLine2" AS "offices_addressLine2", offices.state AS offices_state, offices.country AS offices_country, offices."postalCode" AS "offices_postalCode", offices.territory AS offices_territory 
+FROM offices ORDER BY offices."officeCode", offices.city, offices.phone, offices."addressLine1", offices."addressLine2", offices.state, offices.country, offices."postalCode", offices.territory, offices."officeCode"
+ LIMIT ? OFFSET ?]
+[parameters: (10, 0)]
+```
 
 ![Get Failes](/images/db-not-open.png?raw=true "Optional Title")
