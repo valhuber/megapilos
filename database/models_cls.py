@@ -23,7 +23,7 @@ from sqlalchemy.dialects.mysql import *
 
 
 
-class Office(SAFRSBase, Base):
+class Office(SAFRSBase, Base):  # megapilos
     __bind_key__ = 'cls'
     __tablename__ = 'offices'
 

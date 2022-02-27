@@ -10,7 +10,7 @@ db_spec =importlib.util.spec_from_file_location("models", db_py.resolve())
 models = importlib.util.module_from_spec(db_spec)
 db_spec.loader.exec_module(models)
 
-# use absolute path import for easier multi-{app,model,db} support
+# megapilos
 what_is = pathlib.Path(__file__).parent.parent
 db_cls_py = pathlib.Path(__file__).parent.parent / "database/models_cls.py"
 db_cls_spec =importlib.util.spec_from_file_location("models_cls", db_cls_py.resolve())
@@ -43,6 +43,6 @@ def expose_models(app, HOST="localhost", PORT=5656, API_PREFIX="/api", **kwargs)
     api.expose_object(models.Region)
     api.expose_object(models.Shipper)
     api.expose_object(models.Supplier)
-    api.expose_object(models_cls.Office)
+    api.expose_object(models_cls.Office)  # megapilos
     safrs.log.setLevel(safrs_log_level)
     return api

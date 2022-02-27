@@ -50,7 +50,8 @@ class Config:
     app_logger.debug(f'config.py - db_url: {db_url}')
     SQLALCHEMY_DATABASE_URI = db_url
     # end patch to set db_url for sqlite (only)
-    SQLALCHEMY_BINDS = {
+    
+    SQLALCHEMY_BINDS = {  # megapilos
         "cls": "mysql+pymysql://root:p@localhost:3306/classicmodels"
         # "db3": "mysql://user:pass@localhost/database3"
     }
