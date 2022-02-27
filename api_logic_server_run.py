@@ -124,7 +124,7 @@ db = safrs.DB  # opens database per config, setting session
 
 
 def create_app(config_filename=None):
-    admin_enabled = os.name != "nt"
+    admin_enabled = False  # megapilos   so that BINDS are preserved (??)   was -- os.name != "nt"
     def constraint_handler(message: str, constraint: object, logic_row: LogicRow):
         if constraint.error_attributes:
             detail = {"model": logic_row.name, "error_attributes": constraint.error_attributes}
@@ -138,6 +138,7 @@ def create_app(config_filename=None):
         flask_app.config.update(SQLALCHEMY_BINDS={'admin': 'sqlite:////tmp/4LSBE.sqlite.4'})
     # flask_app.config.update(SQLALCHEMY_BINDS = {'admin': 'sqlite:///'})
     setup_logging(flask_app)
+    # megapilos   is statement below correct?  When is db actually opened, now can I find metadata > tables etc?
     # ?? db = safrs.DB  # opens database per config, setting session
     Base: declarative_base = db.Model
     session: Session = db.session
@@ -259,4 +260,4 @@ if __name__ == "__main__":
         msg += f' on docker container'
     msg += "https://www.attilatoth.dev/posts/flask-sqlalchemy-multiple-dbs/#:~:text=Configure%20Flask-SQLAlchemy%20to%20use%20multiple%20databases%201%20Configure,separate%20config%20file.%20...%205%20Wrapping%20up.%20"
     app_logger.info(msg)
-    flask_app.run(host=flask_host, threaded=False, port=port)
+    flask_app.run(host=flask_host, threaded=False, port=port)  # how can I find engine/tables?
