@@ -10,6 +10,7 @@ This is the standard ApiLogicProject, with the following changes (I've tried to 
 * `config.py` is altered to include the `cls` bind
 * `database/models_cls.py` has been added (models for the `cls` bind)
 * `api/expose_api_models.py` to expose `models_cls.py`
+* `api_logic_server_run.py` disables `admin_enabled` to preserve config binds
 
 &nbsp;&nbsp;
 
@@ -41,4 +42,10 @@ FROM offices ORDER BY offices."officeCode", offices.city, offices.phone, offices
 [parameters: (10, 0)]
 ```
 
-![Get Failes](/images/db-not-open.png?raw=true "Optional Title")
+![Get Fails](/images/db-not-open.png?raw=true "Optional Title")
+
+## General Question - locating the engine
+
+I can't figure out how to find the SQLAlchemy `engine`, to inspect metadata>tables.
+
+![Find engine](/images/how-to-find-engine.png?raw=true "Optional Title")
